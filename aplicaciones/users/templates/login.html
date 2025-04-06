@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %} LOGIN {% endblock %}
+
+{% block content %}
+    <section class = "h-full w-full flex items-center justify-center">
+
+        <article class = "bg-black w-1/4 h-4/5 flex flex-col items-center justify-center rounded-t-full">
+            <div
+                    class="bg-white mb-6 rounded-2xl shadow-[1px_1px_16px_rgba(0,0,0,0.01),8px_8px_16px_rgba(255,255,255,0.7)] p-6 w-fit">
+                <h1 class="text-black text-3xl font-bold text-center">Inicia Sesión</h1>
+            </div>
+
+
+
+            <form method = "POST" class =
+                    "bg-white p-5 flex flex-col justify-center shadow-[1px_1px_16px_rgba(0,0,0,0.01),8px_8px_16px_rgba(255,255,255,0.7)]">
+                    {% csrf_token %}
+
+                {% for field in form %}
+                <div class = "flex flex-col">
+                     <label for="{{ field.id_for_label }}" class="text-sm font-medium text-gray-700 pb-2">
+                        {{ field.label }}
+
+                        {{ field }}
+                        {% if field.errors %}
+                                <p class="text-xs text-red-500 mt-1">{{ field.errors|striptags }}</p>
+                        {% endif %}
+                </div>
+                {% endfor %}
+<!--                <input type = "hidden" name = "fk_restaurante_id" value = "{{ request.session.restaurante }}">-->
+                 <button type="submit"
+                        class="bg-black text-white py-2 px-4 rounded hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300">
+                    Iniciar Sesión
+                </button>
+                <a href="{% url 'password_reset' %}">¿Olvidaste tu contraseña?</a>
+
+            </form>
+        </article>
+    </section>
+
+
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}Registrar Empresa{% endblock %}
+
+{% block content %}
+    <section class = "w-full h-9/10 flex justify-center items-center mt-32">
+        <form method = "POST" class =
+                "w-1/2 flex flex-col column justify-center align-center  p-5 rounded-lg border border-8 shadow-xl">
+            <hr class = "bg-gray-300 h-1 mt-2 mb-2">
+            <h2 class = "text-center text-3xl font-bold">Register Enterprise</h2>
+            <hr class = "bg-gray-300 h-1 mt-2 mb-2">
+            {% csrf_token %}
+            {% for field in form %}
+            <label class = "mt-4 text-2xl font-semibold ml-2, mb-2"> {{ field.label }} </label>
+            {{ field }}
+            {% endfor %}
+            <button type="submit" class = "text-xl font-semibold rounded bg-blue-300 mt-5 m-1 p-3">Registrar
+                Empresa</button>
+        </form>
+    </section>
+{% endblock %}

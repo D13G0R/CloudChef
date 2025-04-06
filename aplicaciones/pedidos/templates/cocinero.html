@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}
+    Cocinero
+{% endblock %}
+
+{% block content %}
+<section class="bg-gray-50 w-full min-h-screen p-6">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl font-extrabold text-center text-cyan-800 mb-8">Pedidos Pendientes</h1>
+
+        {% for pedido in pedidos %}
+        <div class="bg-white shadow-md rounded-lg mb-6 p-6">
+            <h3 class="text-2xl font-semibold text-gray-700 mb-2">Pedido ID: {{ pedido.id }}</h3>
+            <p class="text-lg text-gray-600 mb-4">Estado: <span class="font-medium">{{ pedido.estado_pedido }}</span></p>
+
+            <ul class="space-y-4 mb-8">
+                {% for plato, detalles in pedido.platos.items %}
+                <li class="bg-gray-100 p-4 rounded-lg shadow-sm">
+                    <h4 class="font-semibold text-gray-800">{{ plato }}</h4>
+                    <ul class="space-y-2">
+                        {% for detalle in detalles %}
+                        <li class="text-gray-600">
+                            <span class="font-medium">{{ detalle.producto }}</span> -
+                            <span class="text-indigo-600">{{ detalle.cantidad }}</span> unidades
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </li>
+                {% endfor %}
+            </ul>
+            <div class = "flex flex-row justify-between">
+                <a href = "{% url 'descolgarPedido' pedido.id %}" class = "p-4 bg-green-200 mt-6">Finalizado</a>
+                <a href = "{% url 'cancelarPedido' pedido.id %}" class = "p-4 bg-red-200 mt-6">Cancelar</a>
+            </div>
+
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

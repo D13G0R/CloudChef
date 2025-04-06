@@ -1,0 +1,236 @@
+/*BASE.HTML*/
+
+
+.headerBase nav a{
+    font-size: 20px;
+    font-weight: semibold;
+}
+.headerBase nav a:hover{
+    color: gray;
+}
+
+.footerBase{
+    background-color: #001e53;
+}
+
+/*MESERO VIEW*/
+.wrapper .item{
+    border: 1px solid black;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 10px;
+    height: 255px;
+}
+.wrapper .item .button-item{
+    height: 100%;
+    width: 100%;
+}
+.wrapper .item div{
+    text-align: center;
+
+}
+
+.tablaMesero{
+    border: 2px solid black;
+    width: 95%;
+    margin-left: 40px;
+    margin-bottom: 100px;
+}
+.tablaMesero tr{
+    border: 2px solid black;
+
+}
+td{
+    height: 40px;
+    text-align: center;
+}
+.logopencil{
+    width:15px;
+    height:15px;
+}
+
+/* Estilos del modal */
+#modal {
+    display: none; /* Inicia oculto */
+    position: fixed; /* Fija el modal en la pantalla */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Asegúrate de que esté encima de otros elementos */
+}
+
+/* Estilos del contenido del modal */
+#modal .bg-white {
+    width: 80%; /* Ancho del modal */
+    max-width: 800px; /* Limita el ancho máximo */
+    max-height: 90%; /* Limita la altura máxima */
+    overflow-y: auto; /* Permite hacer scroll si es necesario */
+    border-radius: 10px; /* Bordes redondeados */
+    padding: 2rem; /* Espaciado interno */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra */
+    background-color: #fff;
+}
+
+/* Estilos de las cartas dentro del modal */
+.producto-card {
+    width: 120px; /* Ancho de cada carta */
+    height: 180px; /* Altura de cada carta */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    border-radius: 8px;
+    padding: 8px;
+    background-color: #f3f4f6;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra ligera */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animación suave */
+}
+
+.producto-card:hover {
+    transform: translateY(-5px); /* Eleva la carta al hacer hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Sombra más fuerte al hacer hover */
+    cursor: pointer;
+}
+
+/* Para el botón de cierre */
+#close-modal {
+    display: block;
+    margin: 1rem auto 0;
+    padding: 0.5rem 1rem;
+    background-color: #e53e3e;
+    color: white;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+#close-modal:hover {
+    background-color: #c53030; /* Sombra más oscura al pasar el cursor */
+}
+
+.highlight {
+    background-color: yellow;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+/*Tabla Inventario*/
+
+/* General Table Styles */
+.tablaInventario {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 70%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+/* Table Header Styles */
+.tablaInventario th {
+    height: 60px;
+    padding: 0px 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Table Body Styles */
+.tablaInventario tbody tr {
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.tablaInventario tbody tr:hover {
+    background-color: #F5F5F5; /* Light gray on hover */
+}
+
+.tablaInventario td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Responsive Images */
+.tablaInventario img {
+    max-width: 25px; /* Adjust size as needed */
+    height: auto;
+}
+
+/* Responsive Table */
+@media (max-width: 600px) {
+    .tablaInventario {
+        width: 100%;
+    }
+}
+
+.tablaAdminPlatos{
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 70%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;}
+
+    /* Table Header Styles */
+.tablaAdminPlatos th {
+
+    height: 60px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Table Body Styles */
+.tablaAdminPlatos tbody tr {
+    background-color: white;
+    transition: background-color 0.3s ease;
+}
+
+.tablaAdminPlatos tbody tr:hover {
+    background-color: #F5F5F5; /* Light gray on hover */
+}
+
+.tablaAdminPlatos td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Responsive Images */
+.tablaAdminPlatos img {
+    max-width: 25px; /* Adjust size as needed */
+    height: auto;
+}
+#productos-disponibles {
+    max-height: 300px;
+    overflow-y: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.tag, .selected-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.tag:hover {
+    background: #d1d5db;
+}
+
+.selected-tag:hover {
+    background: #2563eb;
+}

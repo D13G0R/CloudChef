@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Editar Plato{% endblock %}
+
+{% block content %}
+<section class="w-full h-full flex justify-center items-center mt-10">
+    <div class="flex w-3/4">
+        <!-- FORMULARIO -->
+        <form method="POST" class="border border-2 border-black rounded-lg w-1/2 flex flex-col p-4">
+            <h2 class="text-3xl font-extrabold text-center mb-4">Editando Plato</h2>
+            <hr class="border-dotted border-black mb-4">
+            {% csrf_token %}
+
+            <div class="mb-4">
+                {{ form.nombre_plato }}
+                {{ form.descripcion_plato }}
+                {{ form.precio }}
+            </div>
+
+            <!-- Contenedor de productos seleccionados -->
+            <h3 class="text-xl font-bold mb-2">Productos seleccionados:</h3>
+            <div id="productos-seleccionados" class="flex flex-wrap gap-2 border p-2 rounded mb-4 min-h-[50px]">
+                {% for producto_seleccionado_object in productos_seleccionados %}
+                    <div class="selected-tag bg-blue-500 text-white rounded-full px-3 py-1 cursor-pointer"
+                        data-id="{{ producto_seleccionado_object.id }}" onclick="removeProduct(this)">
+                        {{ producto_seleccionado_object.nombre_producto }}
+                    </div>
+                    <input type="hidden" name="productos" value="{{ producto_seleccionado_object.id }}">
+                {% endfor %}
+            </div>
+
+            <div class="w-full flex justify-center p-2">
+                <input type="submit" value="Actualizar" class="bg-cyan-500 mt-1 mb-1 w-1/2 h-10 text-xl text-white font-bold hover:bg-cyan-600">
+            </div>
+        </form>
+
+        <!-- PRODUCTOS DISPONIBLES A LA DERECHA -->
+        <div class="w-1/2 p-4 border-l border-black">
+            <h3 class="text-xl font-bold mb-2 text-center">Productos disponibles</h3>
+            <div id="productos-disponibles" class="flex flex-wrap gap-2 p-2">
+                {% for producto_disponible_object in productos_disponibles %}
+                    <div class="tag bg-gray-300 text-black rounded-full px-3 py-1 cursor-pointer"
+                        data-id="{{ producto_disponible_object.id }}" onclick="addProduct(this)">
+                        {{ producto_disponible_object.nombre_producto }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="{% static 'js/admin.js' %}"></script>
+{% endblock %}

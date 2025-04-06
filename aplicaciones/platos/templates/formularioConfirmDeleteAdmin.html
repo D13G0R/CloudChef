@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}
+{% endblock %}
+
+{% block content %}
+    <form method = 'POST'>
+        {% csrf_token %}
+        <p>¿Estas seguro que deseas eliminar el Plato: {{Platos.nombre_plato}}?</p>
+        {{ form }}
+        <input type = "submit" value = "Eliminar">
+    </form>
+{% endblock %}

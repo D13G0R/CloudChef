@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Creando..{% endblock %}
+
+{% block content%}
+<section class = "w-full h-full  flex justify-center item-center mt-32" method = "post">
+    <form method="post" class =
+            "border border-2 border-black rounded rounded-lg h-full w-1/2 flex flex-col justify-center p-2">
+        <p class = "text-3xl font-extrabold text-center mb-4">Creando...</p>
+        <hr class = "border-dotted border-black mb-4">
+        {% csrf_token %}
+        {% for field in form %}
+            <label for = "{{ field.name }}" class = "text-xl font-bold pt-2 pb-2">{{ field.label }}</label>
+            <input name = "{{ field.name }}" class = "text-xl border border-1 bordergray-200 rounded rounded-base p-2">
+        {% endfor %}
+        <div class = "w-full flex justify-center p-2">
+            <input type="submit" value="Crear"
+                    class = "bg-blue-500 mt-1 mb-1 w-1/2 h-10 text-xl text-white font-bold hover:text-black">
+            </div>
+    </form>
+</section>
+
+{% endblock %}

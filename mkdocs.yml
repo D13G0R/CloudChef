@@ -1,0 +1,11 @@
+site_name: Mi Documentación del Proyecto
+nav:
+  - Inicio: index.md
+  - API: api.md
+
+theme: readthedocs
+
+plugins:
+  - search
+  - mkdocstrings:
+      default_handler: python  # Usa el handler para Python

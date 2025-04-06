@@ -1,0 +1,69 @@
+<!doctype html>
+{% load static %}
+<html lang="es-419" data-theme="winter" class="scroll-smooth overflow-x-hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Default Title{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body class=" text-gray-800 font-sans bg-gray-200">
+    <!-- Header -->
+    <header class="headerBase text-white p-4 shadow-md h-24 mr-container flex justify-between items-center bg-cyan-800">
+            <section class="flex items-center gap-4">
+                <img src="{% static 'images/logomascota.png' %}" alt="Logo" class="h-20">
+                <h1 class="text-3xl font-bold">CloudChef</h1>
+            </section>
+            <nav class="flex gap-4 text-2xl">
+                <a href="{% url 'home' %}" class = "anclaBase">Home</a>
+                {% if request.user.is_authenticated %}
+                    {% if request.user.fk_rol_id == 2 %}
+                        <a href = "{% url 'vistaCocinero' %}" class = "anclaBase">Cocinero</a>
+
+                    {% elif request.user.fk_rol_id == 3  %}
+                        <a href="{% url 'vistaMesero' %}" class = "anclaBase">Mesero</a>
+
+                    {% elif request.user.fk_rol_id == 4 %}
+                        <a href="{% url 'vistaAyudante' %}" class = "anclaBase">Inventario</a>
+
+                    {% elif request.user.fk_rol_id == 1 %}
+                        <a href="{% url 'adminUsers' %}" class = "anclaBase">Usuarios<hr></a>
+                        <a href="{% url 'vistaMesero' %}" class = "anclaBase">Tomar Pedido<hr></a>
+                        <a href = "{% url 'vistaCocinero' %}" class = "anclaBase">Pedidos<hr></a>
+                        <a href="{% url 'adminPlatos' %}" class = "anclaBase">Platos<hr></a>
+                        <a href="{% url 'vistaAyudante' %}" class = "anclaBase">Productos<hr></a>
+
+                    {% endif %}
+                        <a href="{% url 'SignOut' %}" class="hover:text-gray-400">LogOut</a>
+                {% else %}
+                    <a href="{% url 'loginUser' %}" class="hover:text-gray-400 anclaBase">LogIn</a>
+                    <a href="{% url 'register' %}" class="hover:text-gray-400 anclaBase">Register</a>
+                {% endif %}
+
+                <p>
+                    {% block session %}
+                        <p>
+                            {% if request.user.is_authenticated %}
+                                {{  request.user.first_name }}
+                            {% else %}
+                                Anonimo
+                            {% endif %}
+                        </p>
+                    {% endblock %}
+                </p>
+            </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto my-8" style="height: 669px">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+<!--    <footer class=" text-white p-4 text-center footerBase">-->
+<!--        <p>&copy; {{ year|default:"2024" }} Mi Aplicación. Todos los derechos reservados.</p>-->
+<!--    </footer>-->
+</body>
+</html>

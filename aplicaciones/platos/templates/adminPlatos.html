@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+    Administrar Platos
+{% endblock %}
+
+{% block content %}
+<article class = "w-full flex flex-col items-center bg-white">
+    <h1 class = "text-center font-extrabold text-4xl text-cyan-800">Administracion de Platos</h1>
+    <form class="shadow-lg" action="{% url 'adminPlatos' %}" method="GET">
+        <a href="{% url 'adminPlatos' %}" class = "text-2xl text-cyan-800 font-bold"><</a>
+        <input type="text" name="queryBusquedaPlato" class="border-1" placeholder="Buscar producto...">
+        <button type="submit">
+            <img src="{% static 'images/search.png' %}" class="w-5">
+        </button>
+    </form>
+    <section class = "flex justify-center w-5/6">
+        <table class = "tablaAdminPlatos ">
+            <thead class = "bg-cyan-800 text-white">
+                <tr>
+                    <th>
+                        #
+                    </th>
+                    <th>
+                        Nombre
+                    </th>
+                    <th>
+                        Descripcion
+                    </th>
+                    <th>
+                        Productos
+                    </th>
+                    <th>
+                        precio
+                    </th>
+                    <th>
+                        ingresado_en
+                    </th>
+                    <th>
+                        actualizado_en
+                    </th>
+                    <th>
+                        Edit
+                    </th>
+                    <th>
+                        Delete
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for plato in platos %}
+            <tr>
+                <td>
+                    {{ plato.id }}
+                </td>
+                <td>
+                    {{ plato.nombre_plato }}
+                </td>
+                <td>
+                    {{ plato.descripcion_plato }}
+                </td>
+                <td>
+                    <ul class ="list-disc">
+                        {% for producto in plato.productos.all %}
+                            <li> {{ producto.nombre_producto }} </li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    {{ plato.precio }}
+                </td>
+                <td>
+                   {{ plato.ingresado_en }}
+                </td>
+                <td>
+                    {{ plato.actualizado_en }}
+                </td>
+                <td>
+                    <button>
+                        <a href=" {% url 'adminPlatosEdit' plato.id %}">
+                            <img src = "{% static 'images/pencil.png' %}" class = "w-5">
+                        </a>
+                    </button>
+                </td>
+                <td>
+                    <button>
+                        <a href=" {% url 'adminPlatosDelete' plato.id %}">
+                            <img src = "{% static 'images/trash-truck.png' %}" class = "w-5">
+                        </a>
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+        <button class ="rounded rounded-full w-20 h-20 flex justify-center items-center mt-5 pb-1 shadow-2xl">
+            <a class = "font-bold text-white"
+               href="{% url 'adminPlatosCreate' %}"><img src = "{% static 'images/add-product.png' %}" class = "w-8"></a>
+        </button>
+    </section>
+</article>
+{% endblock %}

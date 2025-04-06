@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GastroSuite - Software para Restaurantes</title>
+    <link rel="stylesheet" href="{% static 'css/presentacion.css' %}">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+    <!-- Header con navegación -->
+    <header class="header">
+        <div class="container header-container">
+            <div class="logo">Cloud<span>Chef</span></div>
+            <button class="loginUser-btn"> <a href = "{% url 'registerEnterprise' %}">Acceso Empresas</a></button>
+        </div>
+    </header>
+
+    <!-- Banner principal -->
+    <section class="main-banner">
+        <img src="/api/placeholder/1920/1080" alt="Gestión de restaurantes" class="banner-image" />
+        <div class="container">
+            <div class="banner-content">
+                <h1>Simplifica la gestión de tu restaurante</h1>
+                <p>Solución integral y minimalista diseñada para mejorar la eficiencia operativa, aumentar la satisfacción del cliente y optimizar tus beneficios.</p>
+                <button class="cta-btn">Solicitar Demo</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de características -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Funcionalidades esenciales</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Gestión intuitiva</h3>
+                    <p>Interfaz limpia y moderna que permite administrar reservas, mesas y pedidos con mínimos clics.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💳</div>
+                    <h3>Pagos integrados</h3>
+                    <p>Procesa todos los métodos de pago con facilidad. División de cuentas y propinas automatizadas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Analítica visual</h3>
+                    <p>Visualiza el rendimiento de tu negocio con gráficos claros y reportes personalizables.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏪</div>
+                    <h3>Multi-local</h3>
+                    <p>Gestiona múltiples ubicaciones desde una sola plataforma centralizada.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧾</div>
+                    <h3>Inventario predictivo</h3>
+                    <p>Anticipa necesidades de stock y minimiza desperdicios con IA predictiva.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔄</div>
+                    <h3>Sincronización en tiempo real</h3>
+                    <p>Mantén cocina, servicio y administración perfectamente coordinados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de testimonios -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Opiniones de clientes</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"La sencillez de GastroSuite nos ha permitido eliminar procesos innecesarios y centrarnos en lo que realmente importa: la experiencia gastronómica de nuestros clientes."</p>
+                    <p class="testimonial-author">Elena Sánchez, Chef Ejecutiva</p>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Lo que más valoro es la claridad visual de los reportes. Ahora puedo tomar decisiones de negocio basadas en datos reales con solo un vistazo a mi dashboard."</p>
+                    <p class="testimonial-author">Javier Moreno, Propietario</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>GastroSuite</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Sobre nosotros</a></li>
+                        <li><a href="#">Equipo</a></li>
+                        <li><a href="#">Carreras</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Soluciones</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Restaurantes</a></li>
+                        <li><a href="#">Bares y cafeterías</a></li>
+                        <li><a href="#">Servicio a domicilio</a></li>
+                        <li><a href="#">Franquicias</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Soporte</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Centro de ayuda</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        <li><a href="#">Webinars</a></li>
+                        <li><a href="#">Documentación</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">© 2025 GastroSuite. Todos los derechos reservados.</div>
+        </div>
+    </footer>
+</body>
+</html>

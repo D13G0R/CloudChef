@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{{ titulo }}
+{% endblock %}
+
+{% block content %}
+<section class="bg-white p-6 shadow-md rounded-lg">
+
+    <table class = "w-full grid-rows-2">
+        <tr class = "w-full">
+            <th class = "w-1/3 "><p class = "text-6xl w-20">🕴️</p></th>
+
+            <th class = "w-1/3  "><h1
+                    class = "text-center font-extrabold text-4xl text-cyan-800">Administracion de Usuarios</h1></th>
+
+            <th class = "w-1/3  pl-32">
+                <div class = "flex justify-around">
+                    <button class ="">
+                         <a href = "{% url 'adminUserAdd' %}"><img src = "{% static 'images/add.png' %}" class ="w-10"></a>
+                    </button>
+
+                </div>
+            </th>
+        </tr>
+
+
+
+    </table>
+
+
+    <br><br>
+    <table class="w-full border-collapse border border-gray-300 text-left text-sm">
+        <thead class="bg-cyan-800">
+            <tr class = "text-white">
+                <th class="border border-gray-300 text-center px-1 py-2">#</th>
+                <th class="border border-gray-300 text-center px-1 py-2">Nombre</th>
+                <th class="border border-gray-300 text-center px-1 py-2">Apellido</th>
+                <th class="border border-gray-300 text-center px-1 py-2">Nombre de Usuario</th>
+                <th class="border border-gray-300 text-center px-1 py-2">Rol</th>
+                <th class="border border-gray-300 text-center px-1 py-2">Correo</th>
+                <th class="border border-gray-300 text-center px-1 py-2">Activo</th>
+                <th class="border border-gray-300 text-center px-1 py-2">Fecha de ingreso</th>
+                <th class="border border-gray-300 text-center px-1 py-2">Options</th>
+            </tr>
+
+        </thead>
+        <tbody>
+            {% for usuario in object_list %}
+            <tr class="hover:bg-gray-200">
+                <td class="border border-gray-300 text-center py-2">{{ usuario.id }}</td>
+                <td class="border border-gray-300 text-center py-2">{{ usuario.first_name }}</td>
+                <td class="border border-gray-300 text-center py-2">{{ usuario.last_name }}</td>
+                <td class="border border-gray-300 text-center py-2">{{ usuario.username }}</td>
+                <td class="border border-gray-300 text-center py-2">{{ usuario.fk_id_rol_id }}</td>
+                <td class="border border-gray-300 text-center py-2">{{ usuario.email }}</td>
+                <td class="border border-gray-300 text-center py-2">{{ usuario.is_active }}</td>
+                <td class="border border-gray-300 text-center py-2">{{ usuario.date_joined }}</td>
+                <td>
+                    <button class ="">
+                        <a href = "{% url 'adminUserEdit' usuario.id %}"><img src = "{% static 'images/edit.png' %}" class = "w-6"></a>
+                    </button>
+                    <button class ="">
+                        <a href = "{% url 'adminUserDelete' usuario.id %}"><img src ="{% static 'images/remove-user.png' %}" class = "w-7"></a>
+                    </button>
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+{% endblock %}

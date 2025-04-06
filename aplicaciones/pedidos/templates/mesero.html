@@ -1,0 +1,99 @@
+{% extends 'base.html' %}  
+{% load static %}  
+{% block title %}  
+Gestión de Pedidos
+{% endblock %}
+
+{% block content %}
+<section class="flex flex-row w-full p-5 space-x-4">
+
+    <div id="modal" class=" fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
+        <div class="bg-white rounded-lg shadow-lg p-5 w-3/4">
+            <h2 class="text-2xl font-bold mb-4 text-gray-800">Selecciona un Producto</h2>
+            <div id="modal-content" class="modal-body flex flex-wrap gap-4 justify-center">
+                <!-- Aquí se mostrarán los productos en forma de cartas dentro de botones -->
+            </div>
+            <button id="close-modal" class="mt-4 bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition">Cerrar</button>
+        </div>
+    </div>
+
+    <article class = "w-full flex flex-col items-center bg-white">
+        <h1 class="text-2xl font-bold mb-4">Nuestro Menú</h1>
+        <div class="shadow-lg">
+
+                <a href="{% url 'vistaMesero' %}" class = "text-2xl text-cyan-800 font-bold"><</a>
+                <input type="text" name="queryBusquedaMenu" id="search-input" class="border-1"
+                       placeholder="Buscar producto...">
+                <button type="submit">
+                <img src="{% static 'images/search.png' %}" class="w-5">
+                </button>
+        </div>
+
+        <div class="wrapper grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for plato in Platos %}
+            <div class="item flex flex-col bg-white rounded-lg shadow-md p-2 transition transform hover:scale-105">
+                <button class="button-item plato-button w-full">
+                    <div class="flex flex-col items-center">
+                        <!-- Aquí podrías agregar una imagen del plato -->
+                        <img src="#" alt="{{ plato.nombre_plato }}"
+                             class="rounded-t-lg mb-2 h-24 w-full object-cover">
+                        <div class="id_plato hidden">
+                            {{ plato.id }}
+                        </div>
+                        <div class="nombre_plato font-semibold text-sm buscar">
+                            {{ plato.nombre_plato }}
+                        </div>
+                        <div class="descripcion_plato text-xs text-gray-600 text-center">
+                            {{ plato.descripcion_plato }}
+                        </div>
+                        <div class="precio mt-1 text-lg text-green-500">
+                            ${{ plato.precio }}
+                        </div>
+                    </div>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+        <hr class="border border-black mb-4">
+
+        <h1 class="text-2xl font-bold mb-4">Productos Disponibles</h1>
+        <div class="wrapper grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+            {% for producto in Productos %}
+            <div class="item flex flex-col bg-white rounded-lg shadow-md p-2 transition transform hover:scale-105">
+                <button class="button-item producto-button w-full">
+                    <div class="flex flex-col items-center">
+                        <!-- Aquí podrías agregar una imagen del producto -->
+                        <img src="#" alt="{{ producto.nombre_producto }}"
+                             class="rounded-t-lg mb-2 h-24 w-full object-cover">
+                        <div class="id_producto hidden">
+                            {{ producto.id }}
+                        </div>
+                        <div class="nombre_producto font-semibold text-sm buscar">
+                            {{ producto.nombre_producto }}
+                        </div>
+                        <div class="descripcion_producto text-xs text-gray-600 text-center">
+                            {{ producto.descripcion_producto }}
+                        </div>
+                        <div class="precio mt-1 text-lg text-green-500">
+                            ${{ producto.precio_producto }}
+                        </div>
+                    </div>
+                </button>
+            </div>
+            {% endfor %}
+        </div>
+    </article>
+
+    <article class="w-1/4 border border-4 border-gray-800 rounded-lg p-5">
+        <form class="panelDePedido w-full flex flex-col" action="{% url 'colgarPedido'%}" method="POST">
+            {% csrf_token %}
+            <h3 class="font-bold text-xl mb-4">Detalles del Pedido</h3>
+            <div id="pedido-detalle" class="text-gray-700 mb-4">Selecciona un plato o producto para añadirlo al pedido.</div>
+            <input type = "hidden" name = "restaurante_id" value = '{{ request.session.restaurante }}'>
+            <input type="submit" value="Enviar Pedido" class="mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 transition">
+        </form>
+    </article>
+</section>
+
+<script src="{% static 'js/mesero.js' %}"></script>
+{% endblock %}
